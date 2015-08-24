@@ -9,7 +9,7 @@ const listStyle = freeze({
 	listStyleType: "none",
 	margin: 0,
 	padding: 0,
-	width: "38em"
+	width: "38.5em"
 });
 const lastListItemStyle = freeze({
 	borderBottom: null

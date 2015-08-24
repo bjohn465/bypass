@@ -24,16 +24,16 @@ const domainStyle = freeze(
 		{},
 		ellipsisBaseStyle,
 		{
+			backgroundRepeat: "no-repeat",
+			color: "#00b",
 			fontFamily: "monospace",
 			fontSize: "110%",
+			paddingLeft: 20,
+			textDecoration: "none",
 			width: "18em"
 		}
 	)
 );
-const domainLinkStyle = freeze({
-	color: "#00b",
-	textDecoration: "none"
-});
 const lastBypassedStyle = ellipsisBaseStyle;
 const removeButtonStyle = freeze({
 	backgroundColor: "#fff",
@@ -137,6 +137,22 @@ const DomainListItem = React.createClass({
 			`Bypassed ${moment( this.state.lastBypassed ).fromNow()}`;
 	},
 
+	getDomainIconUrl( domain ) {
+		return `http://www.google.com/s2/favicons?domain=${domain}`;
+	},
+
+	getDomainStyle( domain ) {
+		return freeze(
+			merge(
+				{},
+				domainStyle,
+				{
+					backgroundImage: `url(${this.getDomainIconUrl( domain )})`
+				}
+			)
+		);
+	},
+
 	render() {
 		const mergedListItemStyle = freeze(
 			merge(
@@ -149,11 +165,10 @@ const DomainListItem = React.createClass({
 
 		return (
 			<li style={mergedListItemStyle}>
-				<span style={domainStyle}>
-					<a href={getDomainUrl( domain )} style={domainLinkStyle}>
-						{domain}
-					</a>
-				</span>
+				<a href={getDomainUrl( domain )}
+						style={this.getDomainStyle( domain )}>
+					{domain}
+				</a>
 				<span style={lastBypassedStyle}>
 					{this.getLastBypassedMessage()}
 				</span>
