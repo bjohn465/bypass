@@ -16,6 +16,10 @@ function getDomainUrl( domain ) {
 	return `http://${domain}/`;
 }
 
+function getFrameUrl( domainUrl ) {
+	return `${domainUrl}favicon.ico`;
+}
+
 function getPostUrl( domainUrl ) {
 	return domainUrl +
 		"171E92C18EEE40A29D1749C505091DFC_SOPHOS_WARN_PROCEEDED_FLAG";
@@ -74,6 +78,7 @@ const DomainBypasser = React.createClass({
 
 	render() {
 		const domainUrl = getDomainUrl( this.props.domain );
+		const frameUrl = getFrameUrl( domainUrl );
 
 		return (
 			<div style={hiddenStyle}>
@@ -83,9 +88,9 @@ const DomainBypasser = React.createClass({
 						method="POST">
 					<input type="hidden"
 						name="FEEDBACK_KEY_REQUESTED_URL"
-						value={getEncodedDomainUrl( domainUrl )} />
+						value={getEncodedDomainUrl( frameUrl )} />
 				</form>
-				<iframe name={this.state.frameName} src={domainUrl} />
+				<iframe name={this.state.frameName} src={frameUrl} />
 			</div>
 		);
 	}
