@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import kebabCase from "lodash/string/kebabCase";
+import getDomainUrl from "../lib/getDomainUrl";
 
 const freeze = Object.freeze;
 
@@ -11,10 +12,6 @@ const delays = freeze({
 	submitForm: 500,
 	triggerBypassed: 1000
 });
-
-function getDomainUrl( domain ) {
-	return `http://${domain}/`;
-}
 
 function getFrameUrl( domainUrl ) {
 	return `${domainUrl}favicon.png`;

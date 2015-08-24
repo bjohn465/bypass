@@ -3,6 +3,7 @@ import DomainBypasser from "./DomainBypasser";
 import Actions from "../lib/actions";
 import merge from "lodash/object/merge";
 import moment from "moment";
+import getDomainUrl from "../lib/getDomainUrl";
 
 const freeze = Object.freeze;
 
@@ -29,6 +30,10 @@ const domainStyle = freeze(
 		}
 	)
 );
+const domainLinkStyle = freeze({
+	color: "#00b",
+	textDecoration: "none"
+});
 const lastBypassedStyle = ellipsisBaseStyle;
 const removeButtonStyle = freeze({
 	backgroundColor: "#fff",
@@ -140,10 +145,15 @@ const DomainListItem = React.createClass({
 				this.props.style
 			)
 		);
+		const domain = this.props.domain;
 
 		return (
 			<li style={mergedListItemStyle}>
-				<span style={domainStyle}>{this.props.domain}</span>
+				<span style={domainStyle}>
+					<a href={getDomainUrl( domain )} style={domainLinkStyle}>
+						{domain}
+					</a>
+				</span>
 				<span style={lastBypassedStyle}>
 					{this.getLastBypassedMessage()}
 				</span>
