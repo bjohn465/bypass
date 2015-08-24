@@ -17,7 +17,7 @@ function getDomainUrl( domain ) {
 }
 
 function getFrameUrl( domainUrl ) {
-	return `${domainUrl}favicon.ico`;
+	return `${domainUrl}favicon.png`;
 }
 
 function getPostUrl( domainUrl ) {
