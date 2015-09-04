@@ -6,7 +6,13 @@ var entries = {
 	"bypass": ["./src/index.js"]
 };
 var isEnvironmentDevServer = "dev-server" === process.env.NODE_ENV;
-var plugins = [];
+var plugins = [
+
+	// We don't need ALL of moment's locales
+	new webpack.IgnorePlugin(
+		/^\.\/locale$/, /moment$/
+	)
+];
 var outputPath = __dirname + "/build";
 var publicPath = "";
 var nonNodeModulesJSLoaders = ["babel-loader?stage=0"];
@@ -14,7 +20,6 @@ var nonNodeModulesJSLoaders = ["babel-loader?stage=0"];
 if ( "production" === process.env.NODE_ENV ) {
 	plugins = plugins.concat([
 		new webpack.optimize.UglifyJsPlugin({
-			comments: /.^/, // Regular expression that should match nothing
 			sourceMap: false,
 			compressor: {
 				warnings: false
