@@ -1,6 +1,6 @@
 {
   "name": "bypass",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bypasses the \"Questionable website\" warning from Sophos",
   "private": true,
   "main": "bypass.js",

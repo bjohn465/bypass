@@ -14,7 +14,7 @@ const delays = freeze({
 });
 
 function getFrameUrl( domainUrl ) {
-	return `${domainUrl}favicon.png`;
+	return `${domainUrl}robots.txt`;
 }
 
 function getPostUrl( domainUrl ) {
